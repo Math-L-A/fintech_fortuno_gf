@@ -28,4 +28,7 @@ public interface GastoRepository extends JpaRepository<Gasto, Long> {
 
     @Query("SELECT g FROM Gasto g WHERE EXTRACT(YEAR FROM g.data_hora) = :ano")
     List<Gasto> buscarPorAno(int ano);
+
+    @Query("SELECT g FROM Gasto g WHERE LOWER(g.usuario.nomeCompleto) LIKE LOWER(CONCAT('%', :nome, '%'))")
+    List<Gasto> buscarPorNomeUsuario(String nome);
 }

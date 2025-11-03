@@ -1,13 +1,23 @@
-// src/api/gastoService.js
-import api from './api';
+import api from "./api";
 
-const PREFIX = '/gastos';
+const API_URL = "/gastos";
 
-export const gastoService = {
-  listar: () => api.get(PREFIX).then(r => r.data),
-  buscarPorId: (id) => api.get(`${PREFIX}/${id}`).then(r => r.data),
-  criar: (gasto) => api.post(PREFIX, gasto).then(r => r.data),
-  atualizar: (id, gasto) => api.put(`${PREFIX}/${id}`, gasto).then(r => r.data),
-  deletar: (id) => api.delete(`${PREFIX}/${id}`).then(r => r.status === 204),
-  listarPorUsuario: (usuarioId) => api.get(`${PREFIX}/usuario/${usuarioId}`).then(r => r.data),
-};
+export const getGastos = () => api.get(API_URL);
+
+export const getGastoById = (id) => api.get(`${API_URL}/${id}`);
+
+export const createGasto = (gasto) => api.post(API_URL, gasto);
+
+export const updateGasto = (id, gasto) => api.put(`${API_URL}/${id}`, gasto);
+
+export const deleteGasto = (id) => api.delete(`${API_URL}/${id}`);
+
+export const getGastosPorUsuario = (usuarioId) => api.get(`${API_URL}/por-usuario/${usuarioId}`);
+
+export const getGastosPorCategoria = (categoriaId) => api.get(`${API_URL}/por-categoria/${categoriaId}`);
+
+export const getGastosMaioresQue = (valor) => api.get(`${API_URL}/maiores-que`, { params: { valor } });
+
+export const getGastosPorAno = (ano) => api.get(`${API_URL}/ano/${ano}`);
+
+export const getGastosPorNomeUsuario = (nome) => api.get(`${API_URL}/por-usuario-nome`, { params: { nome } });

@@ -1,13 +1,19 @@
-// src/api/investimentoService.js
-import api from './api';
+import api from "./api";
 
-const PREFIX = '/investimentos';
+const API_URL = "/investimentos";
 
-export const investimentoService = {
-  listar: () => api.get(PREFIX).then(r => r.data),
-  buscarPorId: (id) => api.get(`${PREFIX}/${id}`).then(r => r.data),
-  criar: (investimento) => api.post(PREFIX, investimento).then(r => r.data),
-  atualizar: (id, investimento) => api.put(`${PREFIX}/${id}`, investimento).then(r => r.data),
-  deletar: (id) => api.delete(`${PREFIX}/${id}`).then(r => r.status === 204),
-  porUsuario: (usuarioId) => api.get(`${PREFIX}/usuario/${usuarioId}`).then(r => r.data),
-};
+export const getInvestimentos = () => api.get(API_URL);
+
+export const getInvestimentoById = (id) => api.get(`${API_URL}/${id}`);
+
+export const createInvestimento = (inv) => api.post(API_URL, inv);
+
+export const updateInvestimento = (id, inv) => api.put(`${API_URL}/${id}`, inv);
+
+export const deleteInvestimento = (id) => api.delete(`${API_URL}/${id}`);
+
+export const getInvestimentosPorValorMinimo = (valor) => api.get(`${API_URL}/por-valor-minimo`, { params: { valor } });
+
+export const getInvestimentosVencemAntes = (data) => api.get(`${API_URL}/vencem-antes`, { params: { data } });
+
+export const getInvestimentosPorTipo = (tipo) => api.get(`${API_URL}/tipo/${encodeURIComponent(tipo)}`);

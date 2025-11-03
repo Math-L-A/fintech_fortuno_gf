@@ -29,7 +29,8 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<Usuario> criar(@RequestBody Usuario usuario) {
-        return ResponseEntity.status(201).body(service.salvar(usuario));
+        Usuario criado = service.salvar(usuario);
+        return ResponseEntity.status(201).body(criado);
     }
 
     @PutMapping("/{id}")
@@ -42,5 +43,16 @@ public class UsuarioController {
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         service.deletar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Usuario>> buscarPorNome(@RequestParam("nome") String nome) {
+        return ResponseEntity.ok(service.buscarPorNomeParcial(nome));
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Usuario> buscarPorEmail(@PathVariable String email) {
+        Usuario u = service.buscarPorEmail(email);
+        return u != null ? ResponseEntity.ok(u) : ResponseEntity.notFound().build();
     }
 }

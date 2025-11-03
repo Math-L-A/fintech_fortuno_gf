@@ -29,6 +29,12 @@ export default function UsuarioForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // basic client-side validation
+    if (!usuario.nomeCompleto || !usuario.email || !usuario.senha) {
+      alert('Nome, email e senha são obrigatórios.');
+      return;
+    }
+
     const action = id ? updateUsuario(id, usuario) : createUsuario(usuario);
 
     action
@@ -38,6 +44,8 @@ export default function UsuarioForm() {
       })
       .catch((error) => {
         console.error("Erro ao salvar usuário:", error);
+        const msg = error?.response?.data?.message || error.message || 'Erro desconhecido';
+        alert(`Falha ao salvar usuário: ${msg}`);
       });
   };
 
