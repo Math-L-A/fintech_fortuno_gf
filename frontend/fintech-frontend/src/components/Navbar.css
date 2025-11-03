@@ -1,0 +1,119 @@
+/* Sidebar styles inspired by attached dashboard */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 240px;
+  background: linear-gradient(180deg,#11383a 0%, #164d4b 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 12px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.12);
+  z-index: 1000;
+}
+
+.sidebar .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 6px;
+  margin-bottom: 18px;
+}
+
+.sidebar .brand .avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #fff;
+}
+
+.sidebar h1 {
+  font-size: 16px;
+  margin: 0;
+  color: #e6f7f4;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+  flex: 1 1 auto;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 8px;
+  color: rgba(255,255,255,0.95);
+  border-radius: 6px;
+  margin-bottom: 6px;
+  text-decoration: none;
+  transition: background 160ms, transform 120ms;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,0.03);
+  transform: translateX(4px);
+}
+
+.nav-item .icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff
+}
+
+.nav-footer {
+  margin-top: 12px;
+}
+
+.sidebar .login-info {
+  color: rgba(255,255,255,0.9);
+  font-size: 14px;
+}
+
+/* Make footer action (logout/login) more readable: give a subtle light background and darker text */
+.nav-footer .nav-item {
+  background: rgba(255,255,255,0.12);
+  color: #072a29; /* dark teal for good contrast */
+  border: none;
+  padding: 8px 10px;
+}
+
+.nav-footer .nav-item .icon { background: rgba(0,0,0,0.04); color: #072a29 }
+
+.nav-footer .nav-item:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+/* Main content offset so content isn't hidden behind the sidebar */
+.main-content {
+  margin-left: 240px;
+  padding: 24px;
+  background: #f2fbf4;
+  min-height: 100vh;
+}
+
+/* Small helper card style to approximate dashboard look */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .sidebar { position: relative; width: 100%; height: auto; flex-direction: row; gap: 8px; padding: 8px; }
+  .main-content { margin-left: 0; padding: 12px; }
+  .nav-list { display:flex; gap:8px; overflow:auto }
+}

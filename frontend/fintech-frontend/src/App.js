@@ -17,7 +17,8 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Routes>
+      <div className="main-content">
+        <Routes>
   <Route path="/" element={<UsuarioList />} />
   <Route path="/novo" element={<UsuarioForm />} />
   <Route path="/editar/:id" element={<UsuarioForm />} />
@@ -39,6 +40,7 @@ function App() {
   <Route path="/investimentos/editar/:id" element={<InvestimentoForm />} />
   <Route path="/investimentos/consultas" element={<InvestimentoQueries />} />
       </Routes>
+      </div>
     </Router>
   );
 }
